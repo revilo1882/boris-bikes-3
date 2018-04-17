@@ -12,7 +12,7 @@ describe DockingStation do
   context 'when bike is working' do
     it 'returns a working bike' do
       bike = subject.release_bike
-      expect(bike.working?).to be true
+      expect(bike).to be_working
   end
 
   end
