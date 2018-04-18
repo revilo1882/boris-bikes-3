@@ -15,6 +15,11 @@ describe DockingStation do
 
   it 'docks something' do
     bike  = Bike.new
-    expects(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike)).to eq bike
   end
+
+  it 'raises error if no bike available' do
+      expect(subject.release_bike).to raise_error("no bikes available")
+  end
+
 end
