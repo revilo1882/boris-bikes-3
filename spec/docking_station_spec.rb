@@ -27,7 +27,7 @@ describe DockingStation do
 
 describe '#dock(bike)' do
   it 'raises error if docking station is full' do
-    20.times { subject.dock(Bike.new) }
+    subject::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
     expect { subject.dock(Bike.new) }.to raise_error 'docking station is full'
   end
 
@@ -40,7 +40,7 @@ end
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
     end
-    
+
     it 'raises error if no bikes available' do
         expect { subject.release_bike }.to raise_error 'no bikes available'
       end
