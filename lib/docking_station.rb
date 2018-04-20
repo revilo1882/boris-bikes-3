@@ -13,7 +13,8 @@ class DockingStation
 
   def release_bike
     fail 'no bikes available' if empty?
-    @bikes.pop
+    fail 'cannot relase as no working bikes available' unless working_bikes?
+    release_working_bike
   end
 
 
@@ -30,6 +31,15 @@ class DockingStation
 
   def full?
     @bikes.length == DEFAULT_CAPACITY
+  end
+
+  def working_bikes?
+    @bikes.any? { |bike| bike.working? }
+  end
+
+  def release_working_bike
+    @bikes.sort_by! { |bike| bike.working?.to_s }
+    @bikes.pop
   end
 
 end
